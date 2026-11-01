@@ -1,0 +1,76 @@
+{
+  "generated_at": "2026-10-28T14:40:12.914131+00:00",
+  "target": "https://yemiog--guardmeta-engine-fastapi-app.us-east.modal.run",
+  "eligibility": {
+    "eligible": true,
+    "enforcement_enabled": true,
+    "model": "meta-models/Muse-Spark-Open-816B-A42B",
+    "model_family": "Muse Spark Open",
+    "open_weight": true,
+    "provider": "modal",
+    "hosted_meta_api": false,
+    "endpoint_host": "yemiog--ep-muse-spark-open-816b-a42b-server.us-west.modal.direct",
+    "reason": "Muse Spark Open open weights are served by modal."
+  },
+  "summary": {
+    "cases": 3,
+    "passed": 3,
+    "pass_rate": 1.0,
+    "model_calls": 6,
+    "tool_calls": 20,
+    "total_tokens": 13880,
+    "median_latency_ms": 3175.6,
+    "max_latency_ms": 3952.4
+  },
+  "results": [
+    {
+      "scenario_id": "proof-approved-payment",
+      "expected": "approved",
+      "actual": "approved",
+      "proof": "SAT",
+      "passed": true,
+      "model_calls": 2,
+      "tool_calls": 7,
+      "total_tokens": 4745,
+      "policy_checks": 10,
+      "counterexamples": [],
+      "certificate_sha256": "3d9e7f2f7160b93246b7b238b2a7cf69d7976438854e43f91525b61f952076c1",
+      "request_id": "c965f207-70b3-404f-8672-418a2df679f4",
+      "latency_ms": 3952.4
+    },
+    {
+      "scenario_id": "proof-denied-self-approval",
+      "expected": "denied",
+      "actual": "denied",
+      "proof": "UNSAT",
+      "passed": true,
+      "model_calls": 2,
+      "tool_calls": 6,
+      "total_tokens": 4464,
+      "policy_checks": 10,
+      "counterexamples": [
+        "separation_of_duties: Requester cannot approve the same transaction."
+      ],
+      "certificate_sha256": "4754dd71c4471133c41e1c1f64b537dd67bfcf29ca269983b908f01a13b6d17a",
+      "request_id": "4d2152df-8420-4642-bb4f-f1d31b42fd96",
+      "latency_ms": 3175.6
+    },
+    {
+      "scenario_id": "proof-denied-daily-exposure",
+      "expected": "denied",
+      "actual": "denied",
+      "proof": "UNSAT",
+      "passed": true,
+      "model_calls": 2,
+      "tool_calls": 7,
+      "total_tokens": 4671,
+      "policy_checks": 10,
+      "counterexamples": [
+        "daily_exposure: Existing daily outflow plus this amount must remain within the daily limit."
+      ],
+      "certificate_sha256": "bfa97ebbe0f837b8f07c7f8d5e77c7483d396419c2c8dd31e586b5a5df48bc7d",
+      "request_id": "9e64a58b-0763-4fa9-8759-a6bd9795c325",
+      "latency_ms": 3068.5
+    }
+  ]
+}
